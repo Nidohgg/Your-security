@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./estilos/styles.css">
     <title>YOUR SECURITY</title>
 </head>
 <body>
-    <main>
-        <!--INICIO HEADER-->
-        <header style="background-color: rgb(243, 132, 132); padding: 1px;">
+    <!--INICIO HEADER-->
+    <header class="nav-header">
+        <div class="nav-logo">
+            <img src="./img/logo.png" alt="Logo de la empresa" width="40" height="40">
             <h1>YOUR SECURITY</h1>
+        </div>
+        <div class="nav-buscador">
+            <input type="text" placeholder="Buscar...">
+        </div>
+        <div class="nav-menu">
             <ul>
                 <li>
                     <a href="./paginas/productos.html">Productos</a>
@@ -24,10 +31,12 @@
                     <a href="./paginas/contacto.html">Contacto</a>
                 </li>
             </ul>
-        </header>
-        <!--FIN HEADER-->
+        </div>
+    </header>
+    <!--FIN HEADER-->
+    <main>
 
-        <h2 style="text-align: center;">
+        <h2>
             Bienvenido a Your Security
         </h2>
         <hr>
@@ -37,6 +46,32 @@
             <h3>
                 <a href="#">Ver mas >>></a>
             </h3>
+            <ul>
+                <li>
+                    <div>
+                        <img src="./img/" alt="Producto 1">
+                        <p>Camara Hikvision</p>
+                        <p>$300</p>
+                        <button>Añadir al carrito</button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <img src="./img/" alt="Producto 2">
+                        <p>Camara Dahua</p>
+                        <p>$200</p>
+                        <button>Añadir al carrito</button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <img src="./img/" alt="Producto 3">
+                        <p>Alarma</p>
+                        <p>$80</p>
+                        <button>Añadir al carrito</button>
+                    </div>
+                </li>
+            </ul>
         </div>
 
         <hr>
