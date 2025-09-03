@@ -4,6 +4,9 @@
     padding: 0;
     box-sizing: border-box; 
 }
+html{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
 /*estilos del HEADER*/
 .nav-header{
@@ -14,7 +17,6 @@
     padding: 10px;
     height: 100px;
     width: 100%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /*estilos del div logo*/
@@ -25,6 +27,11 @@
     font-size: 10px;
     color: #ffffff;
 }
+
+.nav-logo a{ 
+    color: #ffffff;
+}
+
 
 /*INICIO estilos del menu*/
 .nav-menu{
@@ -56,5 +63,50 @@
 
 a{
     text-decoration: none;
-    color: #000000;
 }
+/*INICIO MAIN DE PAGINAS*/
+.main-product{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    min-height: 63vh;
+}
+
+.aside-product{
+    width: 250px;
+    background-color: #db8f8f;
+    padding: 5px;
+    text-align: center;
+    
+}
+
+.section-product{
+    width: 100%;
+    display :flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    background-color: #f0dcdc;
+    padding: 5px;
+}
+
+.product-container{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 300px;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    background-color: burlywood;
+}
+
+/*FIN MAIN DE PAGINAS*/
+/*INICIO FOOTER*/
+footer{
+   height: 250px;
+   background-color: #000000;
+   color: #ffffff;
+   padding: 10px;
+}
+/*FIN FOOTER*/

@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../estilos/styles.css">
     <title>YOUR SECURITY</title>
 </head>
 <body>
-
-    <main>
-        <header>
+    <!--INICIO HEADER-->
+    <header class="nav-header">
+        <div class="nav-logo">
+            <img src="../img/logo.png" alt="Logo de la empresa" width="40" height="40">
             <h1>
                 <a href="../index.html">YOUR SECURITY</a>
             </h1>
+        </div>
+        <div class="nav-buscador">
+            <input type="text" placeholder="Buscar...">
+        </div>
+        <div class="nav-menu">
             <ul>
                 <li>
                     <a href="./productos.html">Productos</a>
@@ -26,10 +33,63 @@
                     <a href="./contacto.html">Contacto</a>
                 </li>
             </ul>
-        </header>
-        <h1>PRODUCTOS</h1>
-        <hr>
-        <!--INICIO FOOTER-->
+        </div>
+    </header>
+    <!--FIN HEADER-->
+    <main class="main-product">
+        
+        <aside class="aside-product">
+            <h3>PRODUCTOS</h3>
+            <p>Marcas</p>
+        </aside>
+
+        <section class="section-product">
+            <div class="product-container">
+                <img src="../img/" alt="Producto 1">
+                <h2>Camara Hikvision</h2>
+                <p>$300</p>
+                <button>Añadir al carrito</button>
+            </div>
+            
+            <div class="product-container">
+                <img src="../img/" alt="Producto 2">
+                <h2>Camara Dahua</h2>
+                <p>$250</p>
+                <button>Añadir al carrito</button>
+
+            </div>
+
+            <div class="product-container">
+                <img src="../img/" alt="Producto 3">
+                <h2>Camara Intelbras</h2>
+                <p>$200</p>
+                <button>Añadir al carrito</button>
+            </div>
+            <div class="product-container">
+                <img src="../img/" alt="Producto 1">
+                <h2>Camara Hikvision</h2>
+                <p>$300</p>
+                <button>Añadir al carrito</button>
+            </div>
+            
+            <div class="product-container">
+                <img src="../img/" alt="Producto 2">
+                <h2>Camara Dahua</h2>
+                <p>$250</p>
+                <button>Añadir al carrito</button>
+
+            </div>
+
+            <div class="product-container">
+                <img src="../img/" alt="Producto 3">
+                <h2>Camara Intelbras</h2>
+                <p>$200</p>
+                <button>Añadir al carrito</button>
+            </div>
+        </section>
+
+    </main>
+     <!--INICIO FOOTER-->
         <footer>
             <h2>FOOTER</h2>
             <ul>
@@ -48,7 +108,6 @@
             </ul>
         </footer>
         <!--FIN FOOTER-->
-    </main>
  
 </body>
 </html>
