@@ -69,26 +69,58 @@ a{
 .main-product{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     padding: 10px;
     min-height: 63vh;
+    background-color: rgb(230, 230, 230);
+
+}
+
+.item-container{
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    margin: 10px;
+    width: 60%;
+    background-color: #ffffff;
+}
+
+/*quita el estilo default de las listas*/
+ul li {
+    list-style-type: none;
 }
 
 .aside-product{
-    width: 250px;
+    width: 30%;
     background-color: #db8f8f;
     padding: 5px;
-    text-align: center;
     border: 1px solid #000000;
+}
+
+.aside-product h3{
+    text-align: center;
+    padding: 5px 0 5px 0;
+}
+
+.aside-product h4{
+    padding: 10px 0 5px 5px;
+}
+
+.aside-product ul{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 10px;
 }
 
 .section-product{
     width: 100%;
     display :flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 10px;
+    justify-content: space-evenly;
+    gap: 15px;
     background-color: #ffffff;
-    padding: 5px;
+    padding: 20px;
 }
 
 .product-container {
@@ -102,10 +134,16 @@ a{
     border: 1px solid #000000;
     border-radius: 8%;
     background-color: #ffffff;
+    transition: 0.4s ease;
 }
 
 .product-container a{
     text-align: center;
+    
+}
+
+.product-container:hover{
+    transform: scale(1.04);
 }
 
 .product-container img{
@@ -207,7 +245,6 @@ footer{
     display: flex;
     justify-content: center;
     gap: 20px;
-    list-style: none;
     padding: 20px;
     font-size: 15px;
 }
@@ -226,6 +263,19 @@ footer{
 /*INICIA MEDIA QUERIES */
 /*footer media queries*/
 @media (max-width: 600px){
+
+
+    .nav-header{
+        flex-direction: column;
+        height: auto;
+        gap: 10px;
+    }
+
+    .nav-menu li{
+        font-size: 14px;
+        padding: 5px;
+    }
+
     footer{
         height: auto;
     }
