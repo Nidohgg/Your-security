@@ -66,7 +66,28 @@ a{
     color: inherit;
 }
 /*INICIO MAIN DE PAGINAS*/
-.main-product{
+.main-index{
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    width: 100%;
+    color: #000000;
+}
+
+.presentacion-index{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.719), rgba(255, 255, 255, 0.5)), url(../img/camaraFondo3.jpg);
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.main-product{ /*main de productos*/
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -92,9 +113,8 @@ ul li {
 
 .aside-product{
     width: 30%;
-    background-color: #db8f8f;
+    background-color: #e0e0e0;
     padding: 5px;
-    border: 1px solid #000000;
 }
 
 .aside-product h3{
