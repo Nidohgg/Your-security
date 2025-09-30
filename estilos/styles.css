@@ -69,7 +69,7 @@ a{
 .main-index{
     display: flex;
     flex-direction: column;
-    height: 70vh;
+    height: 100vh;
     width: 100%;
     color: #000000;
 }
@@ -79,12 +79,67 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 20%;
+    height: 30%;
     background-image: linear-gradient(rgba(255, 255, 255, 0.719), rgba(255, 255, 255, 0.5)), url(../img/camaraFondo3.jpg);
     background-size: cover;
     background-position: center;
     text-align: center;
     padding: 20px;
+}
+
+.texto-presentacion{
+    max-width: 800px;
+    margin-top: 10px;
+}
+.texto-presentacion p{
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.breve-desc{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.indicacion{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+    margin: 11px;
+}
+
+.subtitulo{
+    text-align: center;
+    margin: 11px;
+}
+
+.muestra-product{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: space-around;
+    height: 350px;
+    background-color: rgb(230, 230, 230);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.card-ayuda{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 150px;
+    background-color: rgb(230, 230, 230);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1;
 }
 
 .main-product{ /*main de productos*/
@@ -94,7 +149,6 @@ a{
     padding: 10px;
     min-height: 63vh;
     background-color: rgb(230, 230, 230);
-
 }
 
 .item-container{
@@ -151,7 +205,7 @@ ul li {
     height: 300px;
     padding: 5px;
     align-items: center;
-    border: 1px solid #000000;
+    border: 1px solid #c9c9c9;
     border-radius: 8%;
     background-color: #ffffff;
     transition: 0.4s ease;
@@ -159,7 +213,6 @@ ul li {
 
 .product-container a{
     text-align: center;
-    
 }
 
 .product-container:hover{
@@ -188,6 +241,8 @@ ul li {
 /*FIN MAIN DE PAGINAS*/
 /*INICIO FOOTER*/
 footer{
+    position: fixed;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -197,6 +252,7 @@ footer{
     color: #ffffff;
     padding: 5px;
     flex-wrap: wrap;
+   
 }
 
 .prefooter{
