@@ -1,128 +1,139 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Font awesome INICIA-->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Font awesome FIN-->
-     <link rel="stylesheet" href="../estilos/styles.css">
+    <link rel="stylesheet" href="../estilos/styles.css">
     <title>YOUR SECURITY</title>
 </head>
+
 <body>
     <!--INICIO HEADER-->
-  <header class="nav-header">
-    <div class="nav-logo">
-      <img src="../img/logo.png" alt="Logo de la empresa" width="40" height="40" />
-      <h1>
-        <a href="../index.html">YOUR SECURITY</a>
-      </h1>
-    </div>
-    <div class="nav-buscador">
-      <input type="text" placeholder="Buscar productos...">
-      <button type="submit">
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
-    <div class="nav-menu">
-      <ul>
-        <li>
-          <a href="./productos.html">Productos</a>
-        </li>
-        <li>
-          <a href="./nosotros.html">Nosotros</a>
-        </li>
-        <li>
-          <a href="./contacto.html">Contacto</a>
-        </li>
-        <li>
-          <a href="./carrito.html">
-            <i class="fa-solid fa-cart-shopping"></i> Carrito
-          </a>
-        </li>
-      </ul>
-    </div>
-  </header>
-  <!--FIN HEADER-->
-    <main>
-        <hr>
-        <h1>CONTACTO</h1>
-
-        <form action="" method="">
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre" required placeholder="Ingresar nombre">
-            <br>
-            <label for="apellido">Apellido</label>
-            <input type="text" name="apellido" id="apellido" placeholder="Ingresar apellido">
-            <br>
-            <label for="mail">Correo Electronico</label>
-            <input type="email" name="mail" id="mail" required placeholder="Ingresar correo">
-            <br>
-            <textarea name="consulta" id="consulta" cols="30" rows="7" placeholder="¿Tienes alguna consulta? Escribela aquí"></textarea>
-            <br>
-            <input type="submit" value="Enviar">
-        </form>
-
-        <hr>
-        <!--INICIO FOOTER-->
-        <footer>
-            <div class="prefooter">
-                <div class="logo-footer">
-
-                    <img src="../img/LOGO.png" alt="">
-                    <p>YOUR SECURITY</p>
-                </div>
-                <div class="redes-footer">
-                    <a href="http://facebook.com" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-brands fa-facebook"></i>
-                    </a>
-                    <a href="http://instagram.com" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="http://x.com" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-brands fa-x-twitter"></i>
-                    </a>
-                </div>
-                <div class="datos-public">
-                    <h4>¿Dónde estamos?</h4>
-                    <p>Plaza Italia 6578</p>
-                    <h4>Atención al cliente</h4>
-                    <p>0800-XXX-XXXX</p>
-                    <h4>Horarios de atención</h4>
-                    <p>Lunes a Viernes 8hs a 17hs</p>
-                </div>
-                <div class="explorar">
-                    <h4>Explorar</h4>
-                    <a href="../index.html">Inicio</a>
+    <header class="nav-header">
+        <div class="nav-logo">
+            <img src="../img/logo.png" alt="Logo de la empresa" width="40" height="40" />
+            <h1>
+                <a href="../index.html">YOUR SECURITY</a>
+            </h1>
+        </div>
+        <div class="nav-buscador">
+            <input type="text" placeholder="Buscar productos...">
+            <button type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <div class="nav-menu">
+            <ul>
+                <li>
                     <a href="./productos.html">Productos</a>
+                </li>
+                <li>
                     <a href="./nosotros.html">Nosotros</a>
+                </li>
+                <li>
                     <a href="./contacto.html">Contacto</a>
-                </div>
+                </li>
+                <li>
+                    <a href="./carrito.html">
+                        <i class="fa-solid fa-cart-shopping"></i> Carrito
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!--FIN HEADER-->
+    <main class="main-contacto">
+        <div class="contacto">
+            <h1>CONTACTO</h1>
+            <div class="contacto-form">
+                <form action="" method="">
+                    <div class="form-datos">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" required placeholder="Ingresar nombre">
+                    </div>
+
+                    <div class="form-datos">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" name="apellido" id="apellido" placeholder="Ingresar apellido">
+                    </div>
+                    <div class="form-datos">
+                        <label for="mail">Correo Electronico</label>
+                        <input type="email" name="mail" id="mail" required placeholder="Ingresar correo">
+                    </div>
+                    <div class="form-datos">
+                        <label for="telefono">Telefono</label>
+                        <input type="number" name="telefono" id="telefono" placeholder="Ingresar N° de telefono">
+                    </div>
+
+                    <div class="form-datos">
+                        <textarea name="consulta" id="consulta" cols="30" rows="7"
+                            placeholder="¿Tienes alguna consulta? Escribela aquí"></textarea>
+                    </div>
+
+                    <input type="submit" value="Enviar" class="btn-enviar">
+                </form>
             </div>
-            <div class="d-footer-list">
-                <ul class="footer-list">
-                    <li>
-                        <a href="#">Politica de privacidad</a>
-                    </li>
-                    <li>
-                        <a href="#">Defensa al consumidor</a>
-                    </li>
-                    <li>
-                        <a href="#">Protección de datos personales</a>
-                    </li>
-                    <li>
-                        <p>©Your security 2025</p>
-                    </li>
-                </ul>
-            </div>
-        </footer>
-        <!--FIN FOOTER-->
+        </div>
     </main>
+    <!--INICIO FOOTER-->
+    <footer>
+        <div class="prefooter">
+            <div class="logo-footer">
+
+                <img src="../img/LOGO.png" alt="">
+                <p>YOUR SECURITY</p>
+            </div>
+            <div class="redes-footer">
+                <a href="http://facebook.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="http://instagram.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="http://x.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+            </div>
+            <div class="datos-public">
+                <h4>¿Dónde estamos?</h4>
+                <p>Plaza Italia 6578</p>
+                <h4>Atención al cliente</h4>
+                <p>0800-XXX-XXXX</p>
+                <h4>Horarios de atención</h4>
+                <p>Lunes a Viernes 8hs a 17hs</p>
+            </div>
+            <div class="explorar">
+                <h4>Explorar</h4>
+                <a href="../index.html">Inicio</a>
+                <a href="./productos.html">Productos</a>
+                <a href="./nosotros.html">Nosotros</a>
+                <a href="./contacto.html">Contacto</a>
+            </div>
+        </div>
+        <div class="d-footer-list">
+            <ul class="footer-list">
+                <li>
+                    <a href="#">Politica de privacidad</a>
+                </li>
+                <li>
+                    <a href="#">Defensa al consumidor</a>
+                </li>
+                <li>
+                    <a href="#">Protección de datos personales</a>
+                </li>
+                <li>
+                    <p>©Your security 2025</p>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <!--FIN FOOTER-->
 </body>
+
 </html>
