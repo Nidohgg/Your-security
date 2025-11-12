@@ -47,6 +47,10 @@ html{
     width: 100%; /*para que ocupe todo el espacio disponible*/
 }
 
+.nav-buscador input:focus{
+    box-shadow: none; /*le saca la sombra*/
+}
+
 .nav-buscador button{
     background: none;
     border: none;
