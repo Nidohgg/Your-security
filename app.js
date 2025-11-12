@@ -20,16 +20,16 @@ function creacionProducto(product){
 
     const newImage = document.createElement('img');
     newImage.setAttribute('src', product.img);
-    newImage.setAttribute('alt', product.nombre);
+    newImage.setAttribute('alt', product.name);
 
     const newH2Name = document.createElement('h2');
-    newH2Name.innerText = product.nombre;
+    newH2Name.innerText = product.name;
 
     const newH3Model = document.createElement('h3');
-    newH3Model.innerText = product.modelo;
+    newH3Model.innerText = product.model;
 
     const newPPrice = document.createElement('p');
-    newPPrice.innerText = `$ ${product.precio}`;
+    newPPrice.innerText = `$ ${product.price}`;
 
     newAnchor.appendChild(newImage);
     newAnchor.appendChild(newH2Name);
@@ -53,7 +53,6 @@ function muestraProductos(productos){
     })
 }
 
-
 //EVENTOS
 inputBusqueda.addEventListener('keyup', (event) => {
     const texto = event.target.value;//obtenemos el texto del input
@@ -61,11 +60,7 @@ inputBusqueda.addEventListener('keyup', (event) => {
     muestraProductos(productosFiltrados);//mostramos los productos filtrados
 })
 
-//Inicia programa
- muestraProductos(listProductos);
-
-
-
+//LLAMADAS A LA API DE AIRTABLE
  async function getProductsFromAirtable() {
     try {
         const response = await fetch(airtableUrl, {
@@ -76,12 +71,20 @@ inputBusqueda.addEventListener('keyup', (event) => {
         });
         const data = await response.json();
         console.log('Products from airtable:', data);
+        const mappedProducts = data.records.map(item => ({
+            name: item.fields.Name,
+            model: item.fields.Model,
+            price: item.fields.Price,
+            img: item.fields.img[0].url,
+            category: item.fields.Category
+        }));
+        console.log('Mapped Products:', mappedProducts);
+        muestraProductos(mappedProducts);
     }
     catch (error) {
         console.error('Error fetching products from Airtable:', error);
     }
 }
-
 getProductsFromAirtable();
 
 /*async function editAirtableProduct(product) {
