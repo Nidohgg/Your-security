@@ -11,12 +11,16 @@ html{
 
 /*estilos del HEADER*/
 .nav-header{
-    display: flex;
-    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: grid;
+    grid-template-columns: auto 1fr auto; /*logo espacio hamburguesa*/
     align-items: center;
+    gap: .75rem;
     background-color: #000000;
-    padding: 10px 50px 10px 50px;
-    height: 100px;
+    color: #ffffff;
+    padding: 10px 16px;
     width: 100%;
 }
 
@@ -25,18 +29,37 @@ html{
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 10px;
     color: #ffffff;
 }
+
+/*Boton hamburguesa*/
+.hamburguesa{
+    justify-self: end;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: .25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.hamburguesa i{
+    color: #ffffff;
+    font-size: 24px;
+}
+
 /*Estilos del buscador*/
 .nav-buscador{
+    grid-column: 1/ -1;/*Ocupa las columnas de borde a borde*/
     display: flex;
     align-items: center;
+    gap: .5rem;
     background: rgb(255, 255, 255);
     border: 2px solid #ccc;
     border-radius: 20px;
     padding: 5px 10px;
-    width: 300px;
+    width: 100%;
 }
 
 .nav-buscador input{ /*estilos del input, sino queda con los bordes dentro del div buscador*/
@@ -55,15 +78,9 @@ html{
     background: none;
     border: none;
     cursor: pointer;
-    color: #000000;
     font-size: 16px;
     color: #8b8b8b;
-    transition: color 0.3s ease;
 }
-
-.nav-buscador button:hover{
-    color: #000000;
-}    
 
 .nav-logo a{ 
     color: #ffffff;
@@ -71,29 +88,40 @@ html{
 
 /*INICIO estilos del menu*/
 .nav-menu{
-   list-style: none;
+   display: none; /*oculto por defecto*/
+   grid-column: 1/ -1; /*ocupa las columnas de borde a borde*/
 }
 
-/*alinear menú*/
+.nav-menu ul{
+    list-style: none;
+    margin: 0;
+    padding: .5em 0;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .nav-menu li{
-    display: inline;
-    margin-right: 2px;
-    padding: 10px;
-    font-size: 18px;
-    border-radius: 10px;
+    display: block;
+}
+
+.nav-menu a{
+    text-decoration: none;
+    color: #8b8b8b;
+    padding: .5rem .25rem;
+    border-radius: 8px;
+    display: block;
 }
 
 .nav-menu li:hover{
     background-color: #8b8b8b50;
 }
 
-.nav-menu li a:hover{
+.nav-menu a:hover{
     color: #ffffff;
 }
 
-.nav-menu li a{
-    text-decoration: none;
-    color: #8b8b8b;
+.nav-menu.open{
+    display: block; /*muestro el menu cuando tiene la clase open, que se activa por JS*/
 }
 
 /*fin de estilos de menu*/
@@ -662,19 +690,41 @@ footer{
 
 /*INICIA MEDIA QUERIES */
 /*footer media queries*/
-@media (max-width: 600px){
 
-
+@media (min-width: 768px){
     .nav-header{
-        flex-direction: column;
-        height: auto;
-        gap: 10px;
+        grid-template-columns: auto 1fr auto auto; /*logo espacio hamburguesa buscador*/
+        padding: 10px 32px;
+    }
+
+    .nav-buscador{
+        grid-column: auto; /*ocupa solo su columna*/
+        width: auto; /*ocupa solo el espacio necesario*/
+        margin: 0;
+        justify-self: center;
+    }
+
+    .hamburguesa{
+        display: none; /*oculto el boton hamburguesa en pantallas grandes*/
+    }
+
+    .nav-menu{
+        display: block; /*muestro el menu en pantallas grandes*/
+        grid-column: auto; /*ocupa solo su columna*/
+    }
+
+    .nav-menu ul{
+        flex-direction: row;
+        gap: 15px;
+        padding: 0;
     }
 
     .nav-menu li{
-        font-size: 14px;
-        padding: 5px;
+        display: inline-block;
     }
+}
+
+@media (max-width: 600px){
 
     footer{
         height: auto;

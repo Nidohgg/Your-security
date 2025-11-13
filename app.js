@@ -7,6 +7,8 @@ const airtableToken = "patrlX6gGjWJ4rTXi.78e0dc6576eab5f825e32ba84a3880e816e7846
 //data
 
 //elementos del DOM
+const botonHamburguesa = document.querySelector('.hamburguesa');
+const navmenu = document.querySelector('#nav-menu');
 const productsDom = document.querySelector('.section-product');//elemento padre
 const inputBusqueda = document.getElementById("busqueda");
 
@@ -40,10 +42,16 @@ function creacionProducto(product){
     return newProduct;//devolvemos el nuevo elemento creado al Dom
 }
 
-function filtroProductos(text){
-    const filtrado = listProductos.filter( (p => p.nombre.toLowerCase().includes(text.toLowerCase())))
+function filtroProductos(text){//filtramos los productos por nombre
+    const filtrado = listProductos.filter( (p => p.name.toLowerCase().includes(text.toLowerCase())))
     return filtrado;
 }
+
+function filtroProductosCategoria(category){//filtramos los productos por categoria
+    const filtrado = listProductos.filter( (p => p.category.toLowerCase() === category.toLowerCase()))
+    return filtrado;
+}
+
 
 function muestraProductos(productos){
     productsDom.innerHTML = "";//limpiamos el contenido actual
@@ -54,11 +62,22 @@ function muestraProductos(productos){
 }
 
 //EVENTOS
+
+botonHamburguesa.addEventListener('click', () => {//se registra el click en el boton hamburguesa
+    const abrirMenu = navmenu.classList.toggle('open');//se agrega o quita la clase open al menu, el toggle devuelve true o false segun el estado
+    botonHamburguesa.setAttribute('aria-expanded', abrirMenu);//se actualiza el atributo aria-expanded segun el estado del menu
+})
+
+
 inputBusqueda.addEventListener('keyup', (event) => {
     const texto = event.target.value;//obtenemos el texto del input
     const productosFiltrados = filtroProductos(texto);//obtenemos los productos filtrados
     muestraProductos(productosFiltrados);//mostramos los productos filtrados
 })
+
+
+
+
 
 //LLAMADAS A LA API DE AIRTABLE
  async function getProductsFromAirtable() {
@@ -78,6 +97,7 @@ inputBusqueda.addEventListener('keyup', (event) => {
             img: item.fields.img[0].url,
             category: item.fields.Category
         }));
+        listProductos = mappedProducts; // Guardar en la variable global
         console.log('Mapped Products:', mappedProducts);
         muestraProductos(mappedProducts);
     }
