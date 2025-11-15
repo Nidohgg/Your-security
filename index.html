@@ -27,7 +27,7 @@
         </button>
 
         <div class="nav-buscador">
-            <input type="text" placeholder="Buscar productos...">
+            <input id="busqueda" type="text" placeholder="Buscar productos...">
             <button type="submit">
                 <i class="fas fa-search"></i>
             </button>
@@ -53,6 +53,7 @@
         </div>
     </header>
     <!--FIN HEADER-->
+    <!--INICIO MAIN-->
     <main class="main-index">
         <div class="presentacion-index">
             <h2>
@@ -77,9 +78,18 @@
                 </h4>
             </div>
             <hr>
-            <div class="muestra-product">
-                <!-- Se muestran los productos desde el app.js-->
+
+            <div class="carrusel">
+                <!-- Carrusel de productos destacados -->
+                 <button class="carr-btn anterior" aria-label="Anterior"> < </button>
+
+                 <div class="muestra-product" id="carrusel-productos">
+                    <!-- Se muestran los productos desde el app.js-->
+                </div>
+
+                <button class="carr-btn siguiente" aria-label="Siguiente"> > </button> 
             </div>
+            
 
             <div class="subtitulo">
                 <h2>¿Necesitas ayuda?</h2>
@@ -114,6 +124,7 @@
         </div>
 
     </main>
+    <!--FIN MAIN-->
     <!--INICIO FOOTER-->
     <footer>
         <div class="prefooter">

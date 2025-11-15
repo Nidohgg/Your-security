@@ -7,10 +7,17 @@ const airtableToken = "patrlX6gGjWJ4rTXi.78e0dc6576eab5f825e32ba84a3880e816e7846
 //data
 
 //elementos del DOM
+//menu navegacion
 const botonHamburguesa = document.querySelector('.hamburguesa');
 const navmenu = document.querySelector('#nav-menu');
-const productsDom = document.querySelector('.section-product');//elemento padre
+//muestra de productos
+const productsDom = document.querySelector('.section-product');//elemento padre para mostrar los productos
+const productsCarrDom = document.querySelector('.muestra-product');//elemento padre para el carrusel de productos
 const inputBusqueda = document.getElementById("busqueda");
+//carrusel
+const carr = document.getElementById('carrusel-productos');
+const anterior  = document.querySelector('.carr-btn.anterior');
+const siguiente  = document.querySelector('.carr-btn.siguiente');
 
 //funciones
 function creacionProducto(product){
@@ -61,23 +68,40 @@ function muestraProductos(productos){
     })
 }
 
+function muestraProductosCarrusel(productos){
+    productsCarrDom.innerHTML = "";//limpiamos el contenido actual
+    productos.slice(0,8).forEach( (producto) => {
+        const newProductDom = creacionProducto(producto);
+        productsCarrDom.appendChild(newProductDom);//agregamos el nuevo elemento al elemento padre, se agrega al DOM
+    })
+}
+
+function mover(dir = 1){
+    const step = 300
+    carr.scrollBy({ left: dir * step, behavior: 'smooth' });
+}
+
 //EVENTOS
 
+//evento para el boton hamburguesa
 botonHamburguesa.addEventListener('click', () => {//se registra el click en el boton hamburguesa
     const abrirMenu = navmenu.classList.toggle('open');//se agrega o quita la clase open al menu, el toggle devuelve true o false segun el estado
     botonHamburguesa.setAttribute('aria-expanded', abrirMenu);//se actualiza el atributo aria-expanded segun el estado del menu
 })
 
-
+//evento para el input de busqueda
 inputBusqueda.addEventListener('keyup', (event) => {
     const texto = event.target.value;//obtenemos el texto del input
     const productosFiltrados = filtroProductos(texto);//obtenemos los productos filtrados
     muestraProductos(productosFiltrados);//mostramos los productos filtrados
 })
 
-
-
-
+if(anterior){
+    anterior.addEventListener('click', () => mover(-1)); // mueve a la izquierda
+}
+if(siguiente){
+    siguiente.addEventListener('click', () => mover(1));// mueve a la derecha
+}
 
 //LLAMADAS A LA API DE AIRTABLE
  async function getProductsFromAirtable() {
@@ -99,7 +123,12 @@ inputBusqueda.addEventListener('keyup', (event) => {
         }));
         listProductos = mappedProducts; // Guardar en la variable global
         console.log('Mapped Products:', mappedProducts);
-        muestraProductos(mappedProducts);
+        if(productsDom){
+            muestraProductos(mappedProducts);
+        }
+        if(productsCarrDom){
+            muestraProductosCarrusel(mappedProducts);
+        }
     }
     catch (error) {
         console.error('Error fetching products from Airtable:', error);

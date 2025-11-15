@@ -231,18 +231,33 @@ a{
     margin: 11px;
 }
 
+/*Carrusel contenedor*/
+.carrusel{
+    position: relative;/*para posicionar los botones*/
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /*columna central para imagenes, laterales para botones*/
+    align-items: center;
+    gap: 10px;
+}
+
 .muestra-product{
     display: flex;
-    flex-direction:row;
     align-items: center;
-    justify-content: space-around;
-    gap: 10px;
+    gap: 12px;
     height: 350px;
     width: 100%;
     background-color: rgb(230, 230, 230);
     padding: 20px;
     border-radius: 10px;
+
+    overflow: auto;/*para que aparezca la barra de scroll si es necesario*/
+    scroll-snap-type: x mandatory; /*para que el scroll se detenga en cada elemento*/
+    scroll-behavior: smooth; /*para que el scroll sea suave*/
+    /*-webkit-overflow-scrolling: touch;*/
 }
+
+/* Ocultar barra de scroll (opcional) 
+.muestra-product { scrollbar-width: none; }*/
 
 .card-ayuda{
     display: flex;
@@ -318,6 +333,32 @@ ul li {
     border-radius: 8%;
     background-color: #ffffff;
     transition: 0.4s ease;
+    flex: 0 0 220px; /*para que no se encoja ni crezca*/
+    scroll-snap-align: center; /*para que el scroll se detenga en el centro del elemento*/
+}
+
+.carr-btn{
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    display: grid;
+    place-items: center;/*para centrar el icono*/
+    transition: transform .15s ease, opacity .15s ease;/*transicion para el hover*/
+}
+
+.carr-btn:hover{
+    transform: scale(1.06);
+    opacity: 0.8;
+}
+
+.carr-btn:disabled{/*estilo cuando el boton esta deshabilitado*/
+    opacity: 0.3;
+    cursor: default;/*quita el cursor de mano*/
 }
 
 .product-container a{
@@ -725,6 +766,10 @@ footer{
 }
 
 @media (max-width: 600px){
+
+    .product-container{
+        flex-basis: 75%;
+    }
 
     footer{
         height: auto;
