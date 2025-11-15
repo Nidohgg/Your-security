@@ -13,7 +13,7 @@ html{
 .nav-header{
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1000; /*para que quede por encima de otros elementos*/
     display: grid;
     grid-template-columns: auto 1fr auto; /*logo espacio hamburguesa*/
     align-items: center;
@@ -135,8 +135,10 @@ a{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 150vh;
+    min-height: 100vh;
+    height: auto;
     width: 100%;
+    padding: 12px 0 12px 0;
     color: #000000;
 }
 
@@ -144,7 +146,7 @@ a{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 10px;
+    padding: 10px 0;
     min-height: 63vh;
     background-color: rgb(230, 230, 230);
 }
@@ -183,8 +185,9 @@ a{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
-    padding: 20px 0 20px 0;
+    width: 92%;
+    margin: auto;
+    padding: 16px 0 16px 0;
 }
 
 .presentacion-index{
@@ -192,27 +195,27 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 30%;
+    min-height: clamp(280px, 40vh, 520px);
     width: 100%;
     background-image: linear-gradient(rgba(255, 255, 255, 0.719), rgba(255, 255, 255, 0.5)), url(../img/camaraFondo3.jpg);
     background-size: cover;
     background-position: center;
     text-align: center;
-    padding: 20px;
+    padding: clamp(16px, 4%, 32px); /
 }
 
 .texto-presentacion{
     max-width: 800px;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 .texto-presentacion p{
     margin-bottom: 10px;
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: clamp(16px, 2.2vw, 18px);
+    line-height: 1.55;
 }
 
 .breve-desc{
-    font-size: 18px;
+    font-size: clamp(18px, 2.2vw,20px);;
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -221,21 +224,20 @@ a{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: end;
-    gap: 5px;
+    align-items: flex-end;
+    gap: 10px;
     width: 100%;
 }
 
-.subtitulo{
-    text-align: center;
-    margin: 11px;
+.indicacion h2{
+    margin-bottom: 4px;
 }
 
 /*Carrusel contenedor*/
 .carrusel{
     position: relative;/*para posicionar los botones*/
     display: grid;
-    grid-template-columns: 1fr auto 1fr; /*columna central para imagenes, laterales para botones*/
+    grid-template-columns: auto 1fr auto; /*columna central para imagenes, laterales para botones*/
     align-items: center;
     gap: 10px;
 }
@@ -243,45 +245,50 @@ a{
 .muestra-product{
     display: flex;
     align-items: center;
-    gap: 12px;
-    height: 350px;
+    gap: 14px;
+    height: auto;
     width: 100%;
     background-color: rgb(230, 230, 230);
-    padding: 20px;
+    padding: 16px;
     border-radius: 10px;
-
-    overflow: auto;/*para que aparezca la barra de scroll si es necesario*/
-    scroll-snap-type: x mandatory; /*para que el scroll se detenga en cada elemento*/
+    scrollbar-width: none; 
+    overflow-x: auto;/*para que aparezca la barra de scroll si es necesario*/
     scroll-behavior: smooth; /*para que el scroll sea suave*/
-    /*-webkit-overflow-scrolling: touch;*/
 }
 
-/* Ocultar barra de scroll (opcional) 
-.muestra-product { scrollbar-width: none; }*/
-
+.subtitulo{
+    text-align: center;
+    margin: 11px;
+}
 .card-ayuda{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 350px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    justify-items: center;
+    align-items: stretch;
+    gap: 15px;
+    padding:16px;
+    height: auto;
     width: 100%;
+    
     background-color: rgb(230, 230, 230);
     border-radius: 10px;
     text-align: center;
 }
 
-.card-ayuda ul{
-    text-align: center;
+.card-ayuda .product-container{
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    padding: 10px;
 }
 
 .item-container{
     display: flex;
-    gap: 5px;
-    padding: 5px;
-    margin: 10px;
-    width: 60%;
-    background-color: #ffffff;
+    flex-direction: column;
+    gap: 12px;
+    width: 92%;
+    max-width: 1200px;
+    margin: auto;
 }
 
 /*quita el estilo default de las listas*/
@@ -290,35 +297,38 @@ ul li {
 }
 
 .aside-product{
-    width: 30%;
-    background-color: #e0e0e0;
-    padding: 5px;
+    background-color: #f7f7f7;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 12px 10px;
 }
 
 .aside-product h3{
-    text-align: center;
-    padding: 5px 0 5px 0;
+    margin: 0 0 10px 0;
+    font-size: 18px;
 }
 
 .aside-product h4{
-    padding: 10px 0 5px 5px;
+    margin: 12px 0 6px;
+    font-size: 16px;
 }
 
 .aside-product ul{
+    margin: 0 0 8px 0;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    padding-left: 10px;
+    gap: 4px;
+
 }
 
 .section-product{
-    width: 100%;
-    display :flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    gap: 15px;
     background-color: #ffffff;
-    padding: 20px;
+    border-radius: 10px;
+    padding: 12px;
+    display :grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    justify-items: center;
+    gap: 15px;
 }
 
 .product-container {
@@ -336,6 +346,8 @@ ul li {
     flex: 0 0 220px; /*para que no se encoja ni crezca*/
     scroll-snap-align: center; /*para que el scroll se detenga en el centro del elemento*/
 }
+
+
 
 .carr-btn{
     background: #000000;
@@ -732,6 +744,28 @@ footer{
 /*INICIA MEDIA QUERIES */
 /*footer media queries*/
 
+@media (max-width: 600px){
+
+    .product-container{
+        flex-basis: 75%; /*para que ocupe el 75% del contenedor en pantallas pequeñas*/
+    }
+
+    footer{
+        height: auto;
+    }
+    .prefooter{
+        flex-direction: column;
+        height: auto;
+    }
+    .footer-list{
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
 @media (min-width: 768px){
     .nav-header{
         grid-template-columns: auto 1fr auto auto; /*logo espacio hamburguesa buscador*/
@@ -763,26 +797,48 @@ footer{
     .nav-menu li{
         display: inline-block;
     }
-}
 
-@media (max-width: 600px){
+    .contenido-index{
+        width: min(1100px, 92%); /*para que no se expanda demasiado en pantallas grandes*/
+    }
+
+    .muestra-product{
+        padding: 20px;
+        gap: 18px;
+    }
+
+    .item-container{
+        display: grid;
+        grid-template-columns: 260px 1fr; /*aside de 260px y el resto para productos*/;
+        gap: 16px;
+    }
+}
+@media (min-width: 1024px){
+    .contenido-index{
+        width: min(1200px, 92%); /*para que no se expanda demasiado en pantallas grandes*/
+    }
+
+    .item-container{
+        width: 90%;
+    }
+
+    .aside-product{
+        position: sticky;
+        top: 80px; /*para que quede debajo del header*/
+        height: fit-content; /*para que no ocupe toda la altura*/
+        overflow: auto;
+    }
+
+    .section-product{
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
 
     .product-container{
-        flex-basis: 75%;
+        flex-basis: 220px; /*para que ocupe el 220px del contenedor en pantallas grandes*/
     }
 
-    footer{
-        height: auto;
+    .product-container img{
+        height: 180px;
     }
-    .prefooter{
-        flex-direction: column;
-        height: auto;
-    }
-    .footer-list{
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-        font-size: 12px;
-        padding: 5px;
-    }
+
 }
