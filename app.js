@@ -112,7 +112,7 @@ function detalleProducto(productData) {
   //document.getElementById('detalle-color').innerText = `Color: ${productData.fields.Color`;
   document.getElementById("detalle-precio").innerText = `$ ${productData.fields.Price}`;
   document.getElementById("detalle-precio1").innerText = `$ ${productData.fields.Price}`;
-  //document.getElementById('detalle-decripción').innerText = productData.fields.Description || 'No description available.';
+  document.getElementById('detalle-decripción').innerText = productData.fields.Description || 'No description available.';
 }
 
 function cargarCarritoDesdeStorage() {
@@ -283,6 +283,8 @@ async function getProductsFromAirtable() {
       price: item.fields.Price,
       img: item.fields.img[0].url, // Asumiendo que 'img' es un array de objetos con una propiedad 'url'
       category: item.fields.Category,
+      description: item.fields.Description,
+      brand: item.fields.Brand
     }));
     listProductos = mappedProducts; // Guardar en la variable global
     console.log("Mapped Products:", mappedProducts);
