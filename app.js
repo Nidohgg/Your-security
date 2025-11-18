@@ -108,15 +108,10 @@ function mover(dir = 1) {
 function detalleProducto(productData) {
   document.getElementById("detalle-img").src = productData.fields.img[0].url;
   document.getElementById("detalle-nombre").innerText = productData.fields.Name;
-  document.getElementById("detalle-modelo").innerText =
-    productData.fields.Model;
+  document.getElementById("detalle-modelo").innerText = productData.fields.Model;
   //document.getElementById('detalle-color').innerText = `Color: ${productData.fields.Color`;
-  document.getElementById(
-    "detalle-precio"
-  ).innerText = `$ ${productData.fields.Price}`;
-  document.getElementById(
-    "detalle-precio1"
-  ).innerText = `$ ${productData.fields.Price}`;
+  document.getElementById("detalle-precio").innerText = `$ ${productData.fields.Price}`;
+  document.getElementById("detalle-precio1").innerText = `$ ${productData.fields.Price}`;
   //document.getElementById('detalle-decripción').innerText = productData.fields.Description || 'No description available.';
 }
 
@@ -329,36 +324,4 @@ if (productId) {
   getProductDetailFromAirtable();
 }
 
-/*async function editAirtableProduct(product) {
-    try {
-        const response = await fetch(`${airtableUrl}/recqGCxjt90Sadm7s`, {
-            method: 'PATCH',
-            headers: {
-                'Authorization': `Bearer ${airtableToken}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                fields: {
-                    name: product.nombre,
-                    model: product.modelo,
-                    price: product.precio,
-                    image: product.img
-                }
-            })
-        });
-        const data = await response.json();
-        console.log('Product updated in Airtable:', data);
-    } catch (error) {
-        console.error('Error updating product in Airtable:', error);
-    }
-};
 
-//editAirtableProduct(listProductos[0]);
-editAirtableProduct(
-    {
-        nombre: "Camara de red domo fija ColorVU 4K HIKVISION EDITADA",
-        modelo: "DS-2CD2187G2-L(SU) EDITADA",
-        precio: 150,
-        img: '../img/camara fija domo Hikvision 4K.png'
-    }
-);*/
