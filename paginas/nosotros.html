@@ -18,18 +18,24 @@
   <!--INICIO HEADER-->
   <header class="nav-header">
     <div class="nav-logo">
-      <img src="../img/logo.png" alt="Logo de la empresa" width="40" height="40" />
+      <img src="../img/logo.png" alt="Logo de la empresa" width="40" height="40">
       <h1>
         <a href="../index.html">YOUR SECURITY</a>
       </h1>
     </div>
+    <!--Botón hamburguesa para celular-->
+    <button class="hamburguesa" aria-label="Abrir menú" aria-controls="nav-menu" aria-expanded="false">
+      <i class="fa fa-bars"></i>
+    </button>
+
     <div class="nav-buscador">
-      <input type="text" placeholder="Buscar productos...">
+      <input id="busqueda" type="text" placeholder="Buscar productos...">
       <button type="submit">
         <i class="fas fa-search"></i>
       </button>
     </div>
-    <div class="nav-menu">
+
+    <div id="nav-menu" class="nav-menu">
       <ul>
         <li>
           <a href="./productos.html">Productos</a>
