@@ -1,15 +1,18 @@
 //Airtable
 const airtableToken = "patrlX6gGjWJ4rTXi.78e0dc6576eab5f825e32ba84a3880e816e7846934cca7ca082d5248d495ce87";
- const baseId = "appn9RLoP0VhtfoET";
- const tableName = "Products";
- const airtableUrl = `https://api.airtable.com/v0/${baseId}/${tableName}`;
+const baseId = "appn9RLoP0VhtfoET";
+const tableName = "Products";
+const airtableUrl = `https://api.airtable.com/v0/${baseId}/${tableName}`;
 
 //data
 
 //elementos del DOM
+
+let listProductos = [];//lista global de productos
 //menu navegacion
 const botonHamburguesa = document.querySelector('.hamburguesa');
 const navmenu = document.querySelector('#nav-menu');
+
 //muestra de productos
 const productsDom = document.querySelector('.section-product');//elemento padre para mostrar los productos
 const productsCarrDom = document.querySelector('.muestra-product');//elemento padre para el carrusel de productos
@@ -19,13 +22,18 @@ const carr = document.getElementById('carrusel-productos');
 const anterior  = document.querySelector('.carr-btn.anterior');
 const siguiente  = document.querySelector('.carr-btn.siguiente');
 
+//para detalle de producto
+//obterner el id del producto
+const params = new URLSearchParams(window.location.search);
+const productId = params.get("code")
+
 //funciones
 function creacionProducto(product){
     const newProduct = document.createElement('div');//creamos un nuevo elemento
     newProduct.setAttribute('class', 'product-container');//le agregamos una clase
 
     const newAnchor = document.createElement('a');
-    newAnchor.setAttribute('href', './detalleProducto.html');
+    newAnchor.href= `./detalleProducto.html?code=${encodeURIComponent(product.id)}`; // enlace a la pagina de detalle del producto
 
     const newImage = document.createElement('img');
     newImage.setAttribute('src', product.img);
@@ -59,7 +67,6 @@ function filtroProductosCategoria(category){//filtramos los productos por catego
     return filtrado;
 }
 
-
 function muestraProductos(productos){
     productsDom.innerHTML = "";//limpiamos el contenido actual
     productos.forEach( (producto) => {
@@ -77,9 +84,21 @@ function muestraProductosCarrusel(productos){
 }
 
 function mover(dir = 1){
-    const step = 300
-    carr.scrollBy({ left: dir * step, behavior: 'smooth' });
+    const paso = 300
+    carr.scrollBy({ left: dir * paso, behavior: 'smooth' });
 }
+
+
+function detalleProducto(productData){
+    document.getElementById('detalle-img').src = productData.fields.img[0].url;
+    document.getElementById('detalle-nombre').innerText = productData.fields.Name;
+    document.getElementById('detalle-modelo').innerText = productData.fields.Model;
+    //document.getElementById('detalle-color').innerText = `Color: ${productData.fields.Color`;
+    document.getElementById('detalle-precio').innerText = `$ ${productData.fields.Price}`;
+    document.getElementById('detalle-precio1').innerText = `$ ${productData.fields.Price}`;
+    //document.getElementById('detalle-decripción').innerText = productData.fields.Description || 'No description available.';
+}
+
 
 //EVENTOS
 
@@ -115,10 +134,11 @@ if(siguiente){
         const data = await response.json();
         console.log('Products from airtable:', data);
         const mappedProducts = data.records.map(item => ({
+            id: item.id,
             name: item.fields.Name,
             model: item.fields.Model,
             price: item.fields.Price,
-            img: item.fields.img[0].url,
+            img: item.fields.img[0].url, // Asumiendo que 'img' es un array de objetos con una propiedad 'url'
             category: item.fields.Category
         }));
         listProductos = mappedProducts; // Guardar en la variable global
@@ -134,7 +154,31 @@ if(siguiente){
         console.error('Error fetching products from Airtable:', error);
     }
 }
+
+//funcion para obtener el detalle de un producto
+async function getProductDetailFromAirtable() {
+    try {
+        const url = `${airtableUrl}/${productId}`;
+        const response =await fetch(url, {
+            headers: {
+                'Authorization': `Bearer ${airtableToken}`,
+                'content-type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        console.log('Detalle del producto: ', data);
+
+        detalleProducto(data);//llamamos a la funcion para mostrar el detalle del producto
+    }catch (error) {
+        console.error('Error obteniendo el detalle del producto', error);
+    }
+}
+
 getProductsFromAirtable();
+
+if(productId){
+    getProductDetailFromAirtable();
+}
 
 /*async function editAirtableProduct(product) {
     try {

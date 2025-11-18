@@ -18,18 +18,24 @@
     <!--INICIO HEADER-->
     <header class="nav-header">
         <div class="nav-logo">
-            <img src="../img/logo.png" alt="Logo de la empresa" width="40" height="40" />
+            <img src="../img/logo.png" alt="Logo de la empresa" width="40" height="40">
             <h1>
                 <a href="../index.html">YOUR SECURITY</a>
             </h1>
         </div>
+        <!--Botón hamburguesa para celular-->
+        <button class="hamburguesa" aria-label="Abrir menú" aria-controls="nav-menu" aria-expanded="false">
+            <i class="fa fa-bars"></i>
+        </button>
+
         <div class="nav-buscador">
-            <input type="text" placeholder="Buscar productos...">
+            <input id="busqueda" type="text" placeholder="Buscar productos...">
             <button type="submit">
                 <i class="fas fa-search"></i>
             </button>
         </div>
-        <div class="nav-menu">
+
+        <div id="nav-menu" class="nav-menu">
             <ul>
                 <li>
                     <a href="./productos.html">Productos</a>
@@ -49,33 +55,28 @@
         </div>
     </header>
     <!--FIN HEADER-->
-
     <main class="main-detalleProducto">
         <div class="detalle-contenedor">
             <div class="detalle-producto">
                 <div class="imagen-detalle">
-                    <img src="../img/camara fija domo Hikvision 4K.png" alt="Camara fija domo Hikvision" />
+                    <img id="detalle-img" src="" alt="Imagen del producto" />
                 </div>
                 <div class="info-detalle">
-                    <h3>Camara de red domo fija ColorVU 4K HIKVISION</h3>
-                    <h5>DS-2CD2187G2-L(SU)</h5>
-                    <p>Color: Blanco</p>
-                    <h3>$ 300</h3>
+                    <h3 id="detalle-nombre"></h3>
+                    <h5 id="detalle-modelo"></h5>
+                    <p id="detalle-color"></p>
+                    <h3 id="detalle-precio"></h3>
                     <h4>Caracteristas mas importantes:</h4>
-                    <ul>
-                        <li>- Definicion 4k</li>
-                        <li>- Vision nocturna</li>
-                        <li>- Deteccion de movimiento</li>
-                    </ul>
+                    <ul id="detalles-caract"></ul>
                 </div>
                 <div class="precio-producto">
-                    <h3>$ 300</h3>
+                    <h3 id="detalle-precio1"></h3>
                     <p>Stock disponible: 4</p>
                     <div class="btns-compra">
-                        <button class="btn-comprar" id="btnComprar">
+                        <!--<button class="btn-comprar" id="btnComprar">
                             Comprar ahora
-                        </button>
-                        <button class="btn-añadirCarrito">
+                        </button>-->
+                        <button class="btn-añadirCarrito" id="btnAñadirCarrito">
                             Agregar al carrito
                         </button>
                     </div>
@@ -84,15 +85,7 @@
             <div class="descripcion-producto">
                 <div>
                     <h4>Descripción del producto:</h4>
-                    <p>La cámara de red domo fija ColorVU 4K HIKVISION DS-2CD2187G2-L(SU) ofrece una resolución de 4K
-                        (3840
-                        x
-                        2160 píxeles) y tecnología ColorVU para imágenes nítidas y detalladas en condiciones de poca
-                        luz.
-                        Cuenta con un lente fijo de 2.8 mm, visión nocturna avanzada, compresión H.265+, detección de
-                        movimiento y protección IP67 contra polvo y agua. Ideal para vigilancia en interiores y
-                        exteriores.
-                    </p>
+                    <p id="detalle-decripción"></p>
                 </div>
             </div>
         </div>
@@ -151,5 +144,6 @@
     <!--FIN FOOTER-->
 
 </body>
-<script src="../JS/detalleProducto.js"></script>
+<script src="../app.js"></script>
+
 </html>
