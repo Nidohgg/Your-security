@@ -27,6 +27,10 @@ const siguiente  = document.querySelector('.carr-btn.siguiente');
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("code")
 
+//Carrito de compras
+const botonCarrito = document.getElementById('btnAñadirCarrito');
+let productDetail = null;
+
 //funciones
 function creacionProducto(product){
     const newProduct = document.createElement('div');//creamos un nuevo elemento
@@ -75,7 +79,8 @@ function muestraProductos(productos){
     })
 }
 
-function muestraProductosCarrusel(productos){
+
+function muestraProductosCarrusel(productos){/**/
     productsCarrDom.innerHTML = "";//limpiamos el contenido actual
     productos.slice(0,8).forEach( (producto) => {
         const newProductDom = creacionProducto(producto);
@@ -122,16 +127,49 @@ if(siguiente){
     siguiente.addEventListener('click', () => mover(1));// mueve a la derecha
 }
 
+if(botonCarrito){
+    botonCarrito.addEventListener('click', (e) => {
+        e.preventDefault();//se hace para evitar que el boton recargue la pagina
+
+        if(!productDetail){ 
+            console.error('No se ha cargado el detalle del producto.');
+            return;
+        }
+
+        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];//obtenemos el carrito del localStorage o un array vacio si no existe
+
+        //verificar si el producto ya esta en el carrito
+        const prodExiste = carrito.find(item => item.id === productDetail.id);
+
+        if(prodExiste){
+            prodExiste.quantity +=1; //suma uno mas 
+        }else{
+            carrito.push({
+                id: productDetail.id,
+                name: productDetail.Name,
+                model: productDetail.Model,
+                price: productDetail.Price,
+                img: productDetail.fields.img[0].url,
+                quantity: 1 
+            });
+        }
+
+        localStorage.setItem('carrito', JSON.stringify(carrito));//guardamos el carrito en el localStorage
+        console.log("Se agrego el producto al carrito");
+        
+    })
+}
+
 //LLAMADAS A LA API DE AIRTABLE
  async function getProductsFromAirtable() {
     try {
         const response = await fetch(airtableUrl, {
             headers: {
-                'Authorization': `Bearer ${airtableToken}`,
+                'Authorization': `Bearer ${airtableToken}`, //sirve para autenticar la peticion
                 'content-type': 'application/json'
             }
         });
-        const data = await response.json();
+        const data = await response.json();//sirve para convertir la respuesta en un objeto json
         console.log('Products from airtable:', data);
         const mappedProducts = data.records.map(item => ({
             id: item.id,
@@ -143,6 +181,7 @@ if(siguiente){
         }));
         listProductos = mappedProducts; // Guardar en la variable global
         console.log('Mapped Products:', mappedProducts);
+
         if(productsDom){
             muestraProductos(mappedProducts);
         }
@@ -168,6 +207,7 @@ async function getProductDetailFromAirtable() {
         const data = await response.json();
         console.log('Detalle del producto: ', data);
 
+        productDetail = data; //Se guarda el detalle del producto en la variable global
         detalleProducto(data);//llamamos a la funcion para mostrar el detalle del producto
     }catch (error) {
         console.error('Error obteniendo el detalle del producto', error);
