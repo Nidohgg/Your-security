@@ -5,8 +5,19 @@
     box-sizing: border-box; 
 }
 
-html{
+html, body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 100%;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    flex: 1 0 auto; /*para que el main ocupe todo el espacio disponible*/
 }
 
 /*estilos del HEADER*/
@@ -165,10 +176,9 @@ a{
 
 .main-detalleProducto{ /*main de detalles de productos*/
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: 10px;
+    align-items: stretch;
+    padding: 12px 8px;
     min-height: 63vh;
     background-color: rgb(230, 230, 230);
 }
@@ -411,43 +421,37 @@ ul li {
 .detalle-contenedor{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 80%;
-    height: auto;
+    gap: 16px;
+    width: 100%;
+    max-width: 1100px;
     background-color: rgb(255, 255, 255);
+    border-radius: 8px;
 }
 .detalle-producto{
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
     align-items: center;
-    padding: 20px;
-    width: 100%;
-    height: 50%;
+    padding: 16px;
+    gap: 16px;
 }
 
 .imagen-detalle{
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    width: 300px;
-    height: 300px;
+    width: 80vw; /*para que ocupe el 80% del ancho de la ventana*/
+    max-width: 320px;
 }
 
 .imagen-detalle img{
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: contain;
 }
 
 .info-detalle{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    width: 40%;
-    gap: 10px;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
 }
 
 .precio-producto{
@@ -455,12 +459,14 @@ ul li {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 15px;
     text-align: center;
     border: 1px solid #c9c9c9;
     border-radius: 12px;
-    padding: 20px;
-    min-width: 200px;
+    padding: 15px;
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 12px;
 }
 
 .btns-compra{
@@ -502,14 +508,14 @@ ul li {
 
 .descripcion-producto{
     display: flex;
-    justify-content: start;
-    width: 80%;
-    padding: 20px;
+    justify-content: center;
+    width: 100%;
+    padding: 15px;
 }
 
 .descripcion-producto div{
-    width: 500px;
-    gap: 50px;
+    width: 100%px;
+    max-width: 700px;
 }
 
 .contacto{
@@ -649,23 +655,17 @@ input:focus, textarea:focus{
 /*FIN MAIN DE PAGINAS*/
 /*INICIO FOOTER*/
 footer{
-    position: static;   /* vuelve a ser parte del flujo normal */
-    bottom: auto;
-    left: auto;   
-    height: 250px;
     width: 100%;
     background-color: #000000;
     color: #ffffff;
-    padding: 5px;
-    flex-wrap: wrap;
+    padding: 16px 12px 8px;
 }
 
 .prefooter{
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     align-items:center;
-    height: 150px;
-    height: auto;
+    gap: 7px;
 }
 
 .logo-footer{
@@ -675,20 +675,20 @@ footer{
 }
 
 .logo-footer img{
-    width: 110px;
-    height: 100px;
+    width: 80px;
+    height: 72px;
     object-fit: contain;
 }
 
 .redes-footer{
     display: flex;
-    gap: 20px;
-    font-size: 40px;
-    padding: 10px;
+    gap: 15px;
+    font-size: 27px;
+    padding: 4px 0;
 }
 
 .redes-footer a{
-    transition: color 0.4s ease;
+    transition: color 0.4s ease, transform 0.2s ease;
 }
 
 .redes-footer a:hover{
@@ -699,44 +699,46 @@ footer{
 .datos-public{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 5px;
-    padding: 10px;
-}
-
-.datos-public p{
-    padding-left: 5px;
 }
 
 .explorar{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 5px;
-    padding: 10px;
 }
 
 .explorar a{
-    padding-left: 5px;
-    transition: color 0.4s ease;
+    transition: color 0.4s ease, transform 0.2s ease;
 }
+
 .explorar a:hover{
     color: #8b8b8b;
-    transform: scale(1.1);
+    transform: scale(1.02);
 }
+
+.d-footer-list{
+    margin-top: 7px;
+}
+
 .footer-list{
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-    font-size: 15px;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 0 0;
+    font-size: 11px;
 }
 
 .footer-list li a{
-    transition: color 0.4s ease;
+    transition: color 0.4s ease, transform 0.2s ease;
 }
 
 .footer-list li a:hover{
     color: #8b8b8b;
-    transform: scale(1.1);
+    transform: scale(1.02);
 }
 
 /*FIN FOOTER*/
@@ -750,20 +752,6 @@ footer{
         flex-basis: 75%; /*para que ocupe el 75% del contenedor en pantallas pequeñas*/
     }
 
-    footer{
-        height: auto;
-    }
-    .prefooter{
-        flex-direction: column;
-        height: auto;
-    }
-    .footer-list{
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-        font-size: 12px;
-        padding: 5px;
-    }
 }
 
 @media (min-width: 768px){
@@ -811,6 +799,89 @@ footer{
         display: grid;
         grid-template-columns: 260px 1fr; /*aside de 260px y el resto para productos*/;
         gap: 16px;
+    }
+
+    .main-detalleProducto {
+        padding: 24px 16px;
+    }
+
+    .detalle-contenedor {
+        border-radius: 10px;
+    }
+
+    .detalle-producto {
+        flex-direction: row;         /* pasa a fila: imagen | info | precio */
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 24px;
+        padding: 24px;
+    }
+
+    .imagen-detalle {
+        width: 300px;
+        height: 300px;
+    }
+
+    .imagen-detalle img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .info-detalle {
+        width: 40%;
+        align-items: flex-start;      
+        text-align: left;
+        gap: 10px;
+    }
+
+    .precio-producto {
+        align-self: stretch;        
+        max-width: 260px;
+        justify-content: center;
+    }
+
+    .descripcion-producto {
+        width: 80%;
+        padding: 20px 24px 24px;
+    }
+
+    .descripcion-producto div {
+        width: 500px;
+    }
+
+    footer{
+        padding: 20px 32px 12px;
+    }
+
+    .prefooter{
+        flex-direction: row;        /* cuatro columnas */
+        justify-content: space-around;
+        align-items: center;
+        text-align: left;
+    }
+
+    .logo-footer{
+        flex-direction: row;        /* logo a la izquierda, texto a la derecha */
+        align-items: center;
+    }
+
+    .logo-footer img{
+        width: 110px;
+        height: 100px;
+    }
+
+    .datos-public,
+    .explorar{
+        align-items: flex-start;    /* alineado a la izquierda en escritorio */
+    }
+
+    .footer-list{
+        flex-direction: row;        /* fila en escritorio */
+        justify-content: center;
+        gap: 20px;
+        padding-top: 16px;
+        font-size: 14px;
     }
 }
 @media (min-width: 1024px){
