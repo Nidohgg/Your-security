@@ -328,7 +328,19 @@ ul li {
     display: flex;
     flex-direction: column;
     gap: 4px;
+}
 
+.filtro-marca{
+    cursor: pointer;
+}
+
+.filtro-tipo{
+    cursor: pointer;
+}
+
+.filtro-activo {
+  font-weight: 700;
+  color: #000;
 }
 
 .section-product{

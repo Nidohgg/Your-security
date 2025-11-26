@@ -7,7 +7,7 @@ const airtableUrl = `https://api.airtable.com/v0/${baseId}/${tableName}`;
 
 //data
 
-//elementos del DOM
+//ELEMENTOS DEL DOM
 
 let listProductos = []; //lista global de productos
 //menu navegacion
@@ -18,6 +18,9 @@ const navmenu = document.querySelector("#nav-menu");
 const productsDom = document.querySelector(".section-product"); //elemento padre para mostrar los productos
 const productsCarrDom = document.querySelector(".muestra-product"); //elemento padre para el carrusel de productos
 const inputBusqueda = document.getElementById("busqueda");
+const filtroMarca = document.querySelectorAll(".filtro-marca");
+const filtroTipo = document.querySelectorAll(".filtro-tipo");
+
 //carrusel
 const carr = document.getElementById("carrusel-productos");
 const anterior = document.querySelector(".carr-btn.anterior");
@@ -35,7 +38,7 @@ const carritoItemsContainer = document.getElementById("carrito-items");
 const carritoTotalAmount = document.getElementById("carrito-total-amount");
 const btnVaciarCarrito = document.getElementById("btn-vaciar-carrito");
 
-//funciones
+//FUNCIONES
 function creacionProducto(product) {
   const newProduct = document.createElement("div"); //creamos un nuevo elemento
   newProduct.setAttribute("class", "product-container"); //le agregamos una clase
@@ -75,14 +78,6 @@ function filtroProductos(text) {
   return filtrado;
 }
 
-function filtroProductosCategoria(category) {
-  //filtramos los productos por categoria
-  const filtrado = listProductos.filter(
-    (p) => p.category.toLowerCase() === category.toLowerCase()
-  );
-  return filtrado;
-}
-
 function muestraProductos(productos) {
   productsDom.innerHTML = ""; //limpiamos el contenido actual
   productos.forEach((producto) => {
@@ -91,10 +86,27 @@ function muestraProductos(productos) {
   });
 }
 
+//filtramos los productos por categoria
+function filtroProductosCategoria(category) {
+  const filtrado = listProductos.filter(
+    (p) => p.category.toLowerCase() === category.toLowerCase()
+  );
+  muestraProductos(filtrado);
+}
+
+//filtramos los productos por marca
+function filtroProductosMarca(brand) {
+  const filtrado = listProductos.filter(
+    (p) => p.brand.toLowerCase() === brand.toLowerCase()
+  );
+  muestraProductos(filtrado);
+}
+
+
 function muestraProductosCarrusel(productos) {
   /**/
   productsCarrDom.innerHTML = ""; //limpiamos el contenido actual
-  productos.slice(0, 8).forEach((producto) => {
+  productos.slice(0, 8).forEach((producto) => {//SLICE PARA LIMITAR A 8 PRODUCTOS
     const newProductDom = creacionProducto(producto);
     productsCarrDom.appendChild(newProductDom); //agregamos el nuevo elemento al elemento padre, se agrega al DOM
   });
@@ -109,7 +121,6 @@ function detalleProducto(productData) {
   document.getElementById("detalle-img").src = productData.fields.img[0].url;
   document.getElementById("detalle-nombre").innerText = productData.fields.Name;
   document.getElementById("detalle-modelo").innerText = productData.fields.Model;
-  //document.getElementById('detalle-color').innerText = `Color: ${productData.fields.Color`;
   document.getElementById("detalle-precio").innerText = `$ ${productData.fields.Price}`;
   document.getElementById("detalle-precio1").innerText = `$ ${productData.fields.Price}`;
   document.getElementById('detalle-decripción').innerText = productData.fields.Description || 'No description available.';
@@ -226,6 +237,30 @@ inputBusqueda.addEventListener("keyup", (event) => {
   muestraProductos(productosFiltrados); //mostramos los productos filtrados
 });
 
+//evento para los filtros de tipo
+filtroTipo.forEach((e) => {
+  e.addEventListener("click", () => {
+    const category = e.getAttribute("data-category");
+
+    filtroTipo.forEach((el) => el.classList.remove("filtro-activo"));//removemos la clase de todos los filtros
+    e.classList.add("filtro-activo");//agregamos la clase al filtro seleccionado
+
+    filtroProductosCategoria(category);
+  });
+})
+
+//evento para los filtros de marca
+filtroMarca.forEach((e) => {
+  e.addEventListener("click", () => {
+    const brand= e.getAttribute("data-brand");
+
+    filtroMarca.forEach((el) => el.classList.remove("filtro-activo"));
+    e.classList.add("filtro-activo");
+
+    filtroProductosMarca(brand);
+  });
+})  
+
 if (anterior) {
   anterior.addEventListener("click", () => mover(-1)); // mueve a la izquierda
 }
@@ -271,7 +306,7 @@ async function getProductsFromAirtable() {
     const response = await fetch(airtableUrl, {
       headers: {
         Authorization: `Bearer ${airtableToken}`, //sirve para autenticar la peticion
-        "content-type": "application/json",
+        "content-type": "application/json", //indica que el contenido es de tipo json
       },
     });
     const data = await response.json(); //sirve para convertir la respuesta en un objeto json
@@ -322,6 +357,7 @@ async function getProductDetailFromAirtable() {
 
 getProductsFromAirtable();
 
+//si existe un productId en la URL, obtenemos el detalle del producto
 if (productId) {
   getProductDetailFromAirtable();
 }
