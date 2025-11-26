@@ -644,13 +644,6 @@ ul li {
     text-align: right;
 }
 
-.carrito-total-btns{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: flex-end;
-}
-
 .btn-vaciar-carrito,
 .btn-finalizar-compra {
     padding: 8px 14px;
@@ -659,8 +652,8 @@ ul li {
     cursor: pointer;
     font-size: 14px;
     font-weight: 600;
+    text-align: center;
 }
-
 
 .btn-vaciar-carrito {
     background-color: #ffffff;

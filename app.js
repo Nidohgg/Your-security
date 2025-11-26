@@ -104,7 +104,6 @@ function filtroProductosMarca(brand) {
 
 
 function muestraProductosCarrusel(productos) {
-  /**/
   productsCarrDom.innerHTML = ""; //limpiamos el contenido actual
   productos.slice(0, 8).forEach((producto) => {//SLICE PARA LIMITAR A 8 PRODUCTOS
     const newProductDom = creacionProducto(producto);
@@ -275,6 +274,8 @@ if (botonCarrito) {
     if (!productDetail) {
       console.error("No se ha cargado el detalle del producto.");
       return;
+    }else{
+      alert("Se agregó el producto al carrito");
     }
 
     const carrito = JSON.parse(localStorage.getItem("carrito")) || []; //obtenemos el carrito del localStorage o un array vacio si no existe
