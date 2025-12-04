@@ -26,20 +26,21 @@
     <!--INICIO MAIN-->
     <main class="main-checkout">
         <section class="checkout-container">
-            <div>
+            <div class="checkout-titulo">
                 <h2>Datos para finalizar tu compra</h2>
                 <p>Completá con tus datos y revisa tu pedido para confirmar</p>
             </div>
-            <div>
-                <section>
+            <div class="checkout-content">
+                <section class="checkout-resumen">
                     <h3>Resumen de carrito</h3>
-                    <div id="resumen-carrito">
+                    <div id="checkout-items" class="checkout-items">
                         <!-- Aquí se generará el resumen del carrito -->
                     </div>
-                    <div>
+                    <p id="checkout-vacio" class="checkout-vacio"> El carrito esta vacio</p>
+                    <div class="checkout-total">
                         <span>Total</span>
                         <strong>
-                            <span id="checkout-total">0.00</span>
+                            $<span id="checkout-total">0.00</span>
                         </strong>
                     </div>
                 </section>
@@ -66,6 +67,7 @@
                             <label for="direccion">Dirección:</label>
                             <input type="text" id="direccion" name="direccion" placeholder="Calle y numero" required>
                         </div>
+
                         <div class="form-grid">
                             <div class="form-datos">
                                 <label for="ciudad">Ciudad:</label>
@@ -76,6 +78,7 @@
                                 <input type="text" id="provincia" name="provincia" required>
                             </div>
                         </div>
+                        
                         <div class="form-datos">
                             <label for="pago">Método de pago</label>
                             <select id="pago" name="pago" required>

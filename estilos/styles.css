@@ -676,6 +676,135 @@ ul li {
     padding: 30px 10px;
 }
 
+.main-checkout{
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px;
+    min-height: 63vh;
+    background-color: #e6e6e6;
+}
+
+.checkout-container{
+    width: 100%;
+    max-width: 1100px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.checkout-titulo{
+    margin-bottom: 6px;
+}
+
+.checkout-content{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px, 1fr));
+    gap: 16px;
+}
+
+.checkout-resumen, .checkout-formulario{
+    border: 1px solid #e0e0e0;
+    background-color: #fafafa;
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.checkout-items{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 12px 0;
+}
+
+.checkout-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #ffffff;
+}
+
+.checkout-item-text h4{
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.checkout-item-text p{
+    font-size: 12px;
+    color: #555;
+}
+
+.checkout-item-subtotal{
+    font-weight: 700;
+}
+
+.checkout-vacio{
+    text-align: center;
+    color: #666;
+    display: none;/*oculto por defecto*/
+}
+
+.checkout-total{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid #dcdcdc;
+    font-size: 16px;
+}
+
+.form-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.formulario select{
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 100%;
+}
+
+.btn-confirmar-compra{
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border: 1px solid #666666;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.btn-confirmar-compra:hover{
+    background-color: #444;
+    transform: scale(1.02);
+}
+
+.checkout-confirmacion{
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.checkout-aviso{
+    color: #c0392b;
+}
+
+.checkout-exito{
+    color: #1d8b3d;
+}
+
 .contacto{
     display: flex;
     flex-direction: column;
@@ -716,7 +845,7 @@ ul li {
     font-size: 14px;
     outline: none;
     transition: 0.3s ease;
-    background-color: rgb(58, 58, 58);
+    background-color: rgb(255, 255, 255);
 }
 
 input:focus, textarea:focus{
