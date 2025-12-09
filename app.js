@@ -45,6 +45,9 @@ const checkoutVacioMensaje = document.getElementById("checkout-vacio");
 const checkoutForm = document.getElementById("checkout-form");
 const checkoutConfirmacion = document.getElementById("checkout-confirmacion");
 
+//
+const btnEditarProducto = document.getElementById("btn-editar-producto");
+
 //FUNCIONES
 function creacionProducto(product) {
   const newProduct = document.createElement("div"); //creamos un nuevo elemento
@@ -294,7 +297,7 @@ if (carritoItemsContainer) {
   }
 }
 
-//evento para el boton hamburguesa 
+//evento para el boton hamburguesa
 if (botonHamburguesa && navmenu) {
   botonHamburguesa.addEventListener("click", () => {
     //se registra el click en el boton hamburguesa
@@ -404,6 +407,49 @@ if (botonCarrito) {
   });
 }
 
+//eveto para el boton de editar producto
+if (btnEditarProducto && productId) {
+  btnEditarProducto.addEventListener("click", async () => {
+    if (!productDetail) {
+      alert("Todavía no se cargó el detalle del producto.");
+      return;
+    }
+
+    // valores actuales
+    const nombreActual = productDetail.fields.Name;
+    const precioActual = productDetail.fields.Price;
+
+    const nuevoNombre = prompt("Nuevo nombre del producto:", nombreActual);
+    if (!nuevoNombre) {
+      alert("El nombre no puede estar vacío.");
+      return;
+    }
+
+    const nuevoPrecioStr = prompt("Nuevo precio:", precioActual);
+    const nuevoPrecio = Number(nuevoPrecioStr);
+
+    if (isNaN(nuevoPrecio)) {
+      alert("El precio debe ser un número válido.");
+      return;
+    }
+
+    try {
+      const updated = await editProductInAirtable(productId, {
+        Name: nuevoNombre,
+        Price: nuevoPrecio,
+      });
+
+      // Airtable devuelve { id, fields: {...} }
+      productDetail = updated; // actualizamos la variable global
+      detalleProducto(updated); // refrescamos los datos en pantalla
+
+      alert("Producto actualizado correctamente ✅");
+    } catch (error) {
+      alert("Ocurrió un error al actualizar el producto.");
+    }
+  });
+}
+
 //LLAMADAS A LA API DE AIRTABLE
 async function getProductsFromAirtable() {
   try {
@@ -436,6 +482,35 @@ async function getProductsFromAirtable() {
     }
   } catch (error) {
     console.error("Error fetching products from Airtable:", error);
+  }
+}
+
+//funcion para editar un producto en airtable
+async function editProductInAirtable(productId, updatedFields) {
+  try {
+    const url = `${airtableUrl}/${productId}`;
+
+    const response = await fetch(url, {
+      method: "PATCH", // importante: PATCH para actualizar
+      headers: {
+        Authorization: `Bearer ${airtableToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fields: updatedFields, // { Name: 'nuevo', Price: 123 }
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("Producto actualizado en Airtable:", data);
+    return data; // { id, fields: { ... } }
+  } catch (error) {
+    console.error("Error actualizando producto en Airtable:", error);
+    throw error;
   }
 }
 
